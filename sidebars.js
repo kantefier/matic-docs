@@ -1125,7 +1125,7 @@ module.exports = {
   edge: [
     {
       type: "category",
-      label: "Introduction",
+      label: "Quick start",
       link: {
         type: "generated-index",
       },
@@ -1292,17 +1292,6 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Community",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/community/propose-new-feature",
-        "edge/community/report-bug",
-      ],
-    },
-    {
-      type: "category",
       label: "Additional features",
       link: {
         type: "generated-index",
@@ -1355,18 +1344,29 @@ module.exports = {
     },
     {
       type: "category",
-      label: "FAQ",
+      label: "FAQs",
       link: {
         type: "generated-index",
       },
       items: [
+        "edge/troubleshooting",
         "edge/faq/validators",
         "edge/faq/gas",
         "edge/faq/contracts",
         "edge/faq/tokens",
       ],
     },
-    "edge/troubleshooting",
+    {
+      type: "category",
+      label: "Community",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "edge/community/propose-new-feature",
+        "edge/community/report-bug",
+      ],
+    },
   ],
 
   polygonid: [
