@@ -1234,7 +1234,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Working with a node",
+      label: "Work with a node",
       link: {
         type: "generated-index",
       },
@@ -1262,7 +1262,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "API Modules",
+      label: "Edge modules",
       link: {
         type: "generated-index",
       },
