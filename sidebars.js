@@ -1120,11 +1120,82 @@ module.exports = {
     "faq/widget-faq",
   ],
 
+// #####################################################################
+
   edge: [
-    "edge/overview",
     {
       type: "category",
-      label: "Get started",
+      label: "Introduction",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "edge/overview",
+      ],
+    },
+    {
+      type: "category",
+      label: "Core components",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "edge/architecture/overview",
+        {
+          type: "category",
+          label: "Networking",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+          ],
+        },
+        {
+          type: "category",
+          label: "Consensus",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "edge/consensus/poa",
+            "edge/consensus/pos-concepts",
+            "edge/consensus/pos-stake-unstake",
+            "edge/consensus/migration-to-pos",
+            "edge/consensus/bls",
+          ],
+        },
+        {
+          type: "category",
+          label: "Block production",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+          ],
+        },
+        {
+          type: "category",
+          label: "Validation",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+          ],
+        },
+        {
+          type: "category",
+          label: "Security",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Operate a node",
       link: {
         type: "generated-index",
       },
@@ -1135,33 +1206,32 @@ module.exports = {
         "edge/get-started/cli-commands",
         "edge/get-started/json-rpc-commands",
         "edge/get-started/terraform-aws-deployment",
-      ],
-    },
-    {
-      type: "category",
-      label: "Configuration",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/configuration/sample-config",
-        "edge/configuration/manage-private-keys",
-        "edge/configuration/prometheus-metrics",
         {
           type: "category",
-          label: "Secret Managers",
+          label: "Configuration",
           link: {
             type: "generated-index",
           },
           items: [
-            "edge/configuration/secret-managers/set-up-aws-ssm",
-            "edge/configuration/secret-managers/set-up-gcp-secrets-manager",
-            "edge/configuration/secret-managers/set-up-hashicorp-vault",
+            "edge/configuration/sample-config",
+            "edge/configuration/manage-private-keys",
+            "edge/configuration/prometheus-metrics",
+            {
+              type: "category",
+              label: "Secret Managers",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "edge/configuration/secret-managers/set-up-aws-ssm",
+                "edge/configuration/secret-managers/set-up-gcp-secrets-manager",
+                "edge/configuration/secret-managers/set-up-hashicorp-vault",
+              ],
+            },
           ],
         },
       ],
     },
-    "edge/validator-hosting",
     {
       type: "category",
       label: "Working with a node",
@@ -1176,16 +1246,50 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Consensus",
+      label: "Run a validator",
       link: {
         type: "generated-index",
       },
       items: [
-        "edge/consensus/poa",
-        "edge/consensus/pos-concepts",
-        "edge/consensus/pos-stake-unstake",
-        "edge/consensus/migration-to-pos",
-        "edge/consensus/bls",
+        "edge/validator-hosting",
+        "edge/get-started/installation",
+        "edge/get-started/set-up-ibft-locally",
+        "edge/get-started/set-up-ibft-on-the-cloud",
+        "edge/get-started/cli-commands",
+        "edge/get-started/json-rpc-commands",
+        "edge/get-started/terraform-aws-deployment",
+      ],
+    },
+    {
+      type: "category",
+      label: "API Modules",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "edge/architecture/modules/blockchain",
+        "edge/architecture/modules/minimal",
+        "edge/architecture/modules/networking",
+        "edge/architecture/modules/state",
+        "edge/architecture/modules/txpool",
+        "edge/architecture/modules/json-rpc",
+        "edge/architecture/modules/consensus",
+        "edge/architecture/modules/storage",
+        "edge/architecture/modules/types",
+        "edge/architecture/modules/syncer",
+        "edge/architecture/modules/sealer",
+        "edge/architecture/modules/other-modules",
+      ],
+    },
+    {
+      type: "category",
+      label: "Community",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "edge/community/propose-new-feature",
+        "edge/community/report-bug",
       ],
     },
     {
@@ -1215,48 +1319,6 @@ module.exports = {
         "edge/additional-features/blockscout",
         "edge/additional-features/permission-contract-deployment",
         "edge/additional-features/predeployment",
-      ],
-    },
-    {
-      type: "category",
-      label: "Architecture",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/architecture/overview",
-        {
-          type: "category",
-          label: "Modules",
-          link: {
-            type: "generated-index",
-          },
-          items: [
-            "edge/architecture/modules/blockchain",
-            "edge/architecture/modules/minimal",
-            "edge/architecture/modules/networking",
-            "edge/architecture/modules/state",
-            "edge/architecture/modules/txpool",
-            "edge/architecture/modules/json-rpc",
-            "edge/architecture/modules/consensus",
-            "edge/architecture/modules/storage",
-            "edge/architecture/modules/types",
-            "edge/architecture/modules/syncer",
-            "edge/architecture/modules/sealer",
-            "edge/architecture/modules/other-modules",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Community",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/community/propose-new-feature",
-        "edge/community/report-bug",
       ],
     },
     {
