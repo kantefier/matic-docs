@@ -5,7 +5,11 @@ description: Plasma token transfer tutorial using metamask.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - plasma
+  - metamask
+  - token transfer
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -19,7 +23,6 @@ The most important thing to be understood from this tutorial is the **proper usa
 3. Replace the token addresses in src/config.json with your corresponding token addresses
 
 ```jsx
-
 posRootERC20: ERC20 root token address on pos bridge
 posChildERC20: ERC20 child token address on pos bridge
 posWETH: PoS Weth
@@ -33,20 +36,19 @@ VERSION: network version,
 NETWORK: "testnet" or "mainnet"
 MATIC_CHAINID: Chain ID of child chain,
 ETHEREUM_CHAINID: Chain ID of root chain
-
 ```
 
 - The configuration and key values for Polygon mainnet and mumbai testnet can be found here
   1. [Mumbai Testnet Config](https://static.matic.network/network/testnet/mumbai/index.json)
   2. [Polygon Mainnet Config](https://static.matic.network/network/mainnet/v1/index.json)
 
-4. Run the project using `npm start` .
+4. Run the project using `npm start`.
 
 ## Example using Plasma ERC20
 
-> NOTE: For the mainnet, Ethereum is the root chain and Polygon Mainnet is the child chain and for the testnet, Goerli is the root chain and Mumbai is the child chain. The values in config.json file should be set accordingly. Goerli and Mumbai networks are used as the root and child chain in this tutorial.
+For the mainnet, Ethereum is the root chain and Polygon Mainnet is the child chain and for the testnet, Goerli is the root chain and Mumbai is the child chain. The values in config.json file should be set accordingly. Goerli and Mumbai networks are used as the root and child chain in this tutorial.
 
-> getMaticPlasmaParent() and getMaticPlasmaChild() is used to initialize the root and child chain matic.js objects for Plasma bridge. Code snippets mention below under each step can be found in the [tutorial](https://github.com/maticnetwork/pos-plasma-tutorial) repo as well.
+`getMaticPlasmaParent()` and `getMaticPlasmaChild()` is used to initialize the root and child chain matic.js objects for Plasma bridge. Code snippets mention below under each step can be found in the [tutorial](https://github.com/maticnetwork/pos-plasma-tutorial) repo as well.
 
 ### Deposit
 
@@ -65,7 +67,13 @@ During deposit of ERC20 tokens, providers are specified as below
 
 `parentProvider: window.web3`
 
-> NOTE: Deposits from Ethereum to Polygon happen using a state sync mechanism and takes about ~22-30 minutes After waiting for this time interval, it is recommended to check the balance using web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [link](/docs/develop/ethereum-polygon/plasma/deposit-withdraw-event-plasma/) explains how to track the deposit events.
+:::note
+
+Deposits from Ethereum to Polygon happen using a state sync mechanism and takes about ~22-30 minutes After waiting for this time interval, it is recommended to check the balance using web3.js/matic.js library or using Metamask.
+
+The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [link](/docs/develop/ethereum-polygon/plasma/deposit-withdraw-event-plasma/) explains how to track the deposit events.
+
+:::
 
 <div
         style={{
@@ -79,9 +87,7 @@ During deposit of ERC20 tokens, providers are specified as below
 
 ### Transfer
 
-Once deposited, the token can be transfered to any other account on the Matic chain.
-
-During Transfer, only the `maticProvider` needs to be set as `window.web3`.
+Once deposited, the token can be transfered to any other account on the Matic chain. During Transfer, only the `maticProvider` needs to be set as `window.web3`.
 
 ```js
 const erc20Token = plasmaClient.erc20(<token address>);
@@ -92,7 +98,8 @@ const txHash = await result.getTransactionHash();
 
 const txReceipt = await result.getReceipt();
 ```
-MATIC is native token on Polygon. So we support transfer of Matic tokens without any token address.
+
+MATIC is native token on Polygon. We support transfer of MATIC tokens without any token address.
 
 ```js
 // initialize token with null means use MATIC tokens
@@ -105,9 +112,9 @@ const txHash = await result.getTransactionHash();
 const txReceipt = await result.getReceipt();
 ```
 
-### Initiate withdraw
+### Initiate Withdraw
 
-For withdrawing tokens back to root chain,tokens have to be first burnt on child chain. Make sure child chain network is selected in metamask.
+For withdrawing tokens back to root chain, tokens have to be first burnt on child chain. Make sure child chain network is selected in metamask.
 
 ```js
 const erc20ChildToken = plasmaClient.erc20(<child token address>);
@@ -118,7 +125,6 @@ const result = await erc20ChildToken.withdrawStart(100);
 const txHash = await result.getTransactionHash();
 
 const txReceipt = await result.getReceipt();
-
 ```
 
 During burning of ERC20 tokens, providers are specified as below
@@ -141,15 +147,15 @@ During burning of ERC20 tokens, providers are specified as below
 
 Withdrawal of funds is initiated from the child chain. A checkpoint interval of 30 mins(~10 minutes for testnet) is set, where all the blocks on the Polygon block layer are validated. Once the checkpoint is submitted to the root chain, the withdraw function can be triggered.
 
-Once the withdraw function is successful,an NFT Exit (ERC721) token is created. The withdrawn funds can be claimed back to your account on the root chain using a process-exit which is explained in the next step.
+Once the withdraw function is successful, an NFT Exit (ERC721) token is created. The withdrawn funds can be claimed back to your account on the root chain using a process-exit which is explained in the next step.
 
-In the confirm withdraw step, providers are specified as below
+In the confirm withdraw step, providers are specified as below:
 
 `maticProvider: maticprovider`
 
 `parentProvider: window.web3`
 
-The **_withdrawConfirm_** function in Plasma bridge involves block proof generation by querying the child chain multiple times and hence it may take 4-5 seconds for Metamask to popup as it consumes time to build the transaction object.
+The `_withdrawConfirm_` function in Plasma bridge involves block proof generation by querying the child chain multiple times and hence it may take 4-5 seconds for Metamask to popup as it consumes time to build the transaction object.
 
 ```js
 const erc20Token = plasmaClient.erc20(<token address>, true);
@@ -159,10 +165,9 @@ const result = await erc20Token.withdrawConfirm(<burn tx hash>);
 const txHash = await result.getTransactionHash();
 
 const txReceipt = await result.getReceipt();
-
 ```
 
-You can use the **_withdrawConfirmFaster_** method which is faster because it generates proof in the backend. Fore more details to use this please visit this [guide](https://maticnetwork.github.io/matic.js/docs/plasma/erc20/withdraw-confirm-faster/)
+You can use the `_withdrawConfirmFaster_` method which is faster because it generates proof in the backend. Fore more details to use this please visit this [guide](https://maticnetwork.github.io/matic.js/docs/plasma/erc20/withdraw-confirm-faster/).
 
 <div
         style={{
@@ -186,10 +191,9 @@ const result = await erc20Token.withdrawExit();
 const txHash = await result.getTransactionHash();
 
 const txReceipt = await result.getReceipt();
-
 ```
 
-In the process exit step, providers are specified as below
+In the process exit step, providers are specified as below:
 
 `maticProvider: maticprovider`
 

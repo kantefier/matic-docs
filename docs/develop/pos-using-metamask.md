@@ -101,7 +101,7 @@ const txReceipt = await result.getReceipt();
 ### Burn
 
 For withdrawing tokens back to root chain,tokens have to be first burnt on child chain. Make sure child chain network is selected in metamask.
-The **withdrawStart()** method can be used to initiate the withdraw process which will burn the specified amount on polygon chain.
+The `withdrawStart()` method can be used to initiate the withdraw process which will burn the specified amount on polygon chain.
 
 ```js
 const erc20Token = posClient.erc20(<token address>);
@@ -141,7 +141,7 @@ During exit of ERC20 tokens, the providers are specified as below
 
 `parentProvider: window.web3`
 
-The **_withdrawExit_** function in PoS bridge involves block proof generation by querying the child chain multiple times and hence it may take 4-5 seconds for Metamask to popup as it consumes time to build the transaction object.
+The `_withdrawExit_` function in PoS bridge involves block proof generation by querying the child chain multiple times and hence it may take 4-5 seconds for Metamask to popup as it consumes time to build the transaction object.
 
 ```js
 const erc20RootToken = posClient.erc20(<root token address>, true);
@@ -154,7 +154,7 @@ const txHash = await result.getTransactionHash();
 const txReceipt = await result.getReceipt();
 
 ```
-You can also use the **_withdrawExitFaster_** method which can be used to exit the withdraw process faster. For more details please visit this [guide](https://maticnetwork.github.io/matic.js/docs/pos/erc20/withdraw-exit-faster/)
+You can also use the `_withdrawExitFaster_` method which can be used to exit the withdraw process faster. For more details please visit this [guide](https://maticnetwork.github.io/matic.js/docs/pos/erc20/withdraw-exit-faster/)
 
 <div
         style={{
