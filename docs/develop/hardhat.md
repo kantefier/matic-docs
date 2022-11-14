@@ -1,6 +1,7 @@
 ---
 id: hardhat
-title: Using Hardhat
+title: Deploy a Smart Contract Using Hardhat
+sidebar_label: Using Hardhat
 description: Use Hardhat to deploy a Smart Contract on Polygon
 keywords:
   - docs
